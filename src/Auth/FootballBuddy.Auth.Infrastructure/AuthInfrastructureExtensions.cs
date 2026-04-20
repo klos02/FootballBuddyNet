@@ -13,7 +13,7 @@ namespace FootballBuddy.Auth.Infrastructure;
 
 public static class AuthInfrastructureExtensions
 {
-    public static IServiceCollection AddAuthInfrastructure(IServiceCollection services,
+    public static IServiceCollection AddAuthInfrastructure(this IServiceCollection services,
         IConfiguration configuration)
     {
         services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Application\FootballBuddy.Auth.Application.csproj" />
+      <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Domain\FootballBuddy.Auth.Domain.csproj" />
+      <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Infrastructure\FootballBuddy.Auth.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+    </ItemGroup>
+
+</Project>

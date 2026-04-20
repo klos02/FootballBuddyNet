@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  footballbuddy-postgres:
+    image: postgres:17
+    container_name: footballbuddy-postgres
+    environment:
+      POSTGRES_DB: footballbuddy
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - footballbuddy-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  footballbuddy-postgres-data:

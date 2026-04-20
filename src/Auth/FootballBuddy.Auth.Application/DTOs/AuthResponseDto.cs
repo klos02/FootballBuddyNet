@@ -1,3 +1,5 @@
+
+
 namespace FootballBuddy.Auth.Application.DTOs;
 
 public sealed class AuthResponseDto

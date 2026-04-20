@@ -9,6 +9,5 @@ public interface IUsersRepository
     public Task<User> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default);
     public Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default);
     public Task AddAsync(User user, CancellationToken cancellationToken = default);
-    public Task UpdateAsync(User user, CancellationToken cancellationToken = default);
-    public Task DeleteAsync(User user, CancellationToken cancellationToken = default);
+
 }

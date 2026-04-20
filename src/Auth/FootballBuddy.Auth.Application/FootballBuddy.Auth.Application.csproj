@@ -12,7 +12,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Application\BuildingBlocks.Application.csproj" />
       <ProjectReference Include="..\..\Shared\FootballBuddy.Shared.Domain\FootballBuddy.Shared.Domain.csproj" />
+      <ProjectReference Include="..\FootballBuddy.Auth.Domain\FootballBuddy.Auth.Domain.csproj" />
     </ItemGroup>
 
 </Project>

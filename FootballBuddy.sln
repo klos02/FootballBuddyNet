@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballBuddy.Auth.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Application", "src\BuildingBlocks\BuildingBlocks.Application\BuildingBlocks.Application.csproj", "{ACC20A27-3D53-42F9-8033-F608BF9194B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballBuddy.Auth.Infrastructure", "src\Auth\FootballBuddy.Auth.Infrastructure\FootballBuddy.Auth.Infrastructure.csproj", "{4E82F10E-633C-4394-B1F9-9CB8B664D0C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{ACC20A27-3D53-42F9-8033-F608BF9194B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC20A27-3D53-42F9-8033-F608BF9194B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACC20A27-3D53-42F9-8033-F608BF9194B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E82F10E-633C-4394-B1F9-9CB8B664D0C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E82F10E-633C-4394-B1F9-9CB8B664D0C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E82F10E-633C-4394-B1F9-9CB8B664D0C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E82F10E-633C-4394-B1F9-9CB8B664D0C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1300A94F-30E1-4B9D-915E-CB809C445FB4} = {CCAA2CC2-AE1A-4CF8-9677-875E70CD2FCA}
@@ -54,5 +60,6 @@ Global
 		{DBEFDC2E-AA60-45A2-87BF-70E517791260} = {386E06A4-B7A2-49FA-BA47-764254990435}
 		{E90EE620-AF7F-4430-8E46-167349B14A76} = {1300A94F-30E1-4B9D-915E-CB809C445FB4}
 		{ACC20A27-3D53-42F9-8033-F608BF9194B6} = {41BC4D66-19C6-4AAA-B11C-694C0926BEE6}
+		{4E82F10E-633C-4394-B1F9-9CB8B664D0C4} = {1300A94F-30E1-4B9D-915E-CB809C445FB4}
 	EndGlobalSection
 EndGlobal

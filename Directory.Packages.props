@@ -10,6 +10,7 @@
     </PackageVersion>
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.15" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.15" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.15" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.15" />
     <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.6" />
     <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.6" />

@@ -5,8 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+var rootPath = Path.GetFullPath(
+    Path.Combine(builder.Environment.ContentRootPath, "..", "..", ".."));
+
 builder.Configuration
-    .SetBasePath(Directory.GetCurrentDirectory())
+    .SetBasePath(rootPath)
     .AddJsonFile("configuration/appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile(
         $"configuration/appsettings.{builder.Environment.EnvironmentName}.json",

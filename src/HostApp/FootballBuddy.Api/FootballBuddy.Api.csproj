@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Api\FootballBuddy.Auth.Api.csproj" />
       <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Application\FootballBuddy.Auth.Application.csproj" />
       <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Domain\FootballBuddy.Auth.Domain.csproj" />
       <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Infrastructure\FootballBuddy.Auth.Infrastructure.csproj" />

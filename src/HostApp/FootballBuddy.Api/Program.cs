@@ -1,3 +1,4 @@
+using FootballBuddy.Auth.Api;
 using FootballBuddy.Auth.Application;
 using FootballBuddy.Auth.Infrastructure;
 using FootballBuddy.Auth.Infrastructure.Persistence;
@@ -18,7 +19,7 @@ builder.Configuration
         reloadOnChange: true)
     .AddEnvironmentVariables();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddAuthApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

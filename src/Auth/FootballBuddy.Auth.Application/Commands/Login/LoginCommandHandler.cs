@@ -38,6 +38,8 @@ public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResp
         }
 
         var token = _jwtTokenService.Generate(user, cancellationToken);
+        
+        
 
         return new AuthResponseDto()
         {

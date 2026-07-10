@@ -25,6 +25,7 @@ public static class AuthInfrastructureExtensions
         services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
+        
 
         services.AddHttpContextAccessor();
 

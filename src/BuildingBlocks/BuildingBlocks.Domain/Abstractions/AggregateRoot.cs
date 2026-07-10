@@ -28,5 +28,6 @@ public class AggregateRoot : IHasDomainEvents
     protected void MarkAsUpdated()
     {
         UpdatedAt = DateTime.UtcNow;
+        Version++;
     }
 }

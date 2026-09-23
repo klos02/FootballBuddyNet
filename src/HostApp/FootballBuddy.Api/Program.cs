@@ -1,3 +1,4 @@
+using FootballBuddy.Api.Middleware;
 using FootballBuddy.Auth.Api;
 using FootballBuddy.Auth.Application;
 using FootballBuddy.Auth.Infrastructure;
@@ -22,6 +23,8 @@ builder.Configuration
 builder.Services.AddControllers().AddAuthApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseNpgsql(
@@ -31,6 +34,8 @@ builder.Services.AddAuthApplication();
 builder.Services.AddAuthInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 await ApplyMigrationsAsync(app);
 

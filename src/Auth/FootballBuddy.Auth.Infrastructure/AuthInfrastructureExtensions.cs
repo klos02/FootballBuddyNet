@@ -1,8 +1,10 @@
 using System.Text;
+using FootballBuddy.Auth.Application.Abstractions;
 using FootballBuddy.Auth.Application.Interfaces;
 using FootballBuddy.Auth.Domain.Repositories;
 using FootballBuddy.Auth.Infrastructure.Authentication.Jwt;
 using FootballBuddy.Auth.Infrastructure.Authentication.Passwords;
+using FootballBuddy.Auth.Infrastructure.Persistence;
 using FootballBuddy.Auth.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +27,7 @@ public static class AuthInfrastructureExtensions
         services.AddScoped<IUsersRepository, UsersRepository>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
-        
+        services.AddScoped<IAuthUnitOfWork, AuthUnitOfWork>();
 
         services.AddHttpContextAccessor();
 

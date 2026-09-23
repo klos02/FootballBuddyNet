@@ -1,3 +1,4 @@
+using FootballBuddy.Auth.Application.Abstractions;
 using FootballBuddy.Auth.Application.DTOs;
 using FootballBuddy.Auth.Application.Exceptions;
 using FootballBuddy.Auth.Application.Interfaces;
@@ -12,12 +13,14 @@ public sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, Au
     private readonly IUsersRepository _usersRepository;
     private readonly IJwtTokenService _jwtTokenService;
     private readonly IPasswordHasher _passwordHasher;
+    private readonly IAuthUnitOfWork _unitOfWork;
     
-    public RegisterCommandHandler(IUsersRepository usersRepository, IJwtTokenService jwtTokenService, IPasswordHasher passwordHasher)
+    public RegisterCommandHandler(IUsersRepository usersRepository, IJwtTokenService jwtTokenService, IPasswordHasher passwordHasher, IAuthUnitOfWork unitOfWork)
     {
         _usersRepository = usersRepository;
         _jwtTokenService = jwtTokenService;
         _passwordHasher = passwordHasher;
+        _unitOfWork = unitOfWork;
     }
     
     
@@ -35,6 +38,8 @@ public sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, Au
         await _usersRepository.AddAsync(user, cancellationToken);
         
         var token = _jwtTokenService.Generate(user, cancellationToken);
+        
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return new AuthResponseDto
         {

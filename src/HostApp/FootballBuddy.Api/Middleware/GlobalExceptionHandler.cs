@@ -1,6 +1,8 @@
 using BuildingBlocks.Application.Abstractions;
 using BuildingBlocks.Domain.Exceptions;
+using FootballBuddy.Auth.Application.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using ApplicationException = BuildingBlocks.Application.ApplicationException;
 
 namespace FootballBuddy.Api.Middleware;
@@ -55,16 +57,25 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
 
         httpContext.Response.StatusCode = statusCode;
 
+        var problemDetails = new ProblemDetails
+        {
+            Status = statusCode,
+            Title = title,
+            Detail = exception.Message
+
+        };
+
+        if (exception is ValidationFailedException validationException)
+        {
+            problemDetails.Extensions["errors"] = validationException.Errors;
+        }
+
         return await _problemDetailsService.TryWriteAsync(new ProblemDetailsContext
         {
             HttpContext = httpContext,
             Exception = exception,
-            ProblemDetails =
-            {
-                Status = statusCode,
-                Title = title,
-                Detail = exception.Message
-            }
+            ProblemDetails = problemDetails
+            
         });
     }
 

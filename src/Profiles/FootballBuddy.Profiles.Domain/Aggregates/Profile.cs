@@ -8,7 +8,7 @@ namespace FootballBuddy.Profiles.Domain.Aggregates;
 public sealed class Profile : AggregateRoot
 {
     public UserId Id { get; private set; }
-    public string DisplayName { get; private set; }
+    public string? DisplayName { get; private set; }
     public Position? PreferredPosition { get; private set; }
     public IReadOnlyCollection<Position> SecondaryPositions => _secondaryPositions.AsReadOnly();
     
@@ -19,18 +19,32 @@ public sealed class Profile : AggregateRoot
     
     private Profile() {}
 
-    private Profile(UserId id, string displayName)
+    private Profile(UserId id)
     {
         Id = id;
-        DisplayName = displayName;
         
     }
 
-    public static Profile Create(UserId id, string displayName)
+    public static Profile Create(UserId id)
     {
-        if (string.IsNullOrWhiteSpace(displayName)) throw new DomainException("No display name provided");
+        return id.Value == Guid.Empty ? throw new DomainException("User ID is required") : new Profile(id);
+    }
+    
+    public void SetDisplayName(string displayName)
+    {
         
-        return new Profile(id, displayName);
+        if (string.IsNullOrWhiteSpace(displayName))
+        {
+            throw new DomainException("Display name is required");
+        }
+        
+        var normalizedName = displayName.Trim();
+        
+        if (DisplayName == normalizedName) return;
+        
+        DisplayName = normalizedName;
+        
+        MarkAsUpdated();
     }
     
 }

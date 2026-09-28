@@ -1,8 +1,6 @@
 using BuildingBlocks.Domain.Abstractions;
 using FootballBuddy.Auth.Application.Abstractions;
-using FootballBuddy.Auth.Application.Events;
-using FootballBuddy.Auth.Domain.Events;
-using MediatR;
+using FootballBuddy.Auth.Infrastructure.Persistence.Outbox;
 
 namespace FootballBuddy.Auth.Infrastructure.Persistence;
 
@@ -10,12 +8,12 @@ public class AuthUnitOfWork : IAuthUnitOfWork
 {
     
     private readonly AuthDbContext _dbContext;
-    private readonly IPublisher _publisher;
+    private readonly OutboxMessageFactory _outboxMessageFactory;
     
-    public AuthUnitOfWork(AuthDbContext dbContext, IPublisher publisher)
+    public AuthUnitOfWork(AuthDbContext dbContext, OutboxMessageFactory outboxMessageFactory)
     {
         _dbContext = dbContext;
-        _publisher = publisher;
+        _outboxMessageFactory = outboxMessageFactory;
     }
     
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -26,10 +24,17 @@ public class AuthUnitOfWork : IAuthUnitOfWork
             .Where(aggregate => aggregate.DomainEvents.Count > 0)
             .ToArray();
 
-        var notifications = aggregates
+        var messages = aggregates
             .SelectMany(aggregate => aggregate.DomainEvents)
-            .Select(ToNotification)
+            .Select(_outboxMessageFactory.Create)
             .ToArray();
+
+        var trackedMessageIds = _dbContext.OutboxMessages.Local
+            .Select(message => message.Id)
+            .ToHashSet();
+
+        _dbContext.OutboxMessages.AddRange(
+            messages.Where(message => trackedMessageIds.Add(message.Id)));
 
         var result = await _dbContext.SaveChangesAsync(cancellationToken);
 
@@ -38,19 +43,6 @@ public class AuthUnitOfWork : IAuthUnitOfWork
             aggregate.ClearDomainEvents();
         }
 
-        foreach (var notification in notifications)
-        {
-            await _publisher.Publish(notification, cancellationToken);
-        }
-
         return result;
     }
-
-    private static INotification ToNotification(IDomainEvent domainEvent) => domainEvent switch
-    {
-        UserRegisteredDomainEvent registered =>
-            new DomainEventNotification<UserRegisteredDomainEvent>(registered),
-        _ => throw new InvalidOperationException(
-            $"Unsupported domain event: {domainEvent.GetType().Name}")
-    };
 }

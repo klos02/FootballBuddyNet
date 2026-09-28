@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FootballBuddy.Auth.Application\FootballBuddy.Auth.Application.csproj" />
+      <ProjectReference Include="..\FootballBuddy.Auth.Contracts\FootballBuddy.Auth.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>

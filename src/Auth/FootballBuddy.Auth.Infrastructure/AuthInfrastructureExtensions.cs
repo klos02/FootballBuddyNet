@@ -5,6 +5,8 @@ using FootballBuddy.Auth.Domain.Repositories;
 using FootballBuddy.Auth.Infrastructure.Authentication.Jwt;
 using FootballBuddy.Auth.Infrastructure.Authentication.Passwords;
 using FootballBuddy.Auth.Infrastructure.Persistence;
+using FootballBuddy.Auth.Infrastructure.Persistence.Outbox;
+using FootballBuddy.Auth.Infrastructure.Persistence.Outbox.Mappers;
 using FootballBuddy.Auth.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +30,8 @@ public static class AuthInfrastructureExtensions
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<IAuthUnitOfWork, AuthUnitOfWork>();
+        services.AddScoped<OutboxMessageFactory>();
+        services.AddScoped<IOutboxEventMapper, UserRegisteredOutboxMapper>();
 
         services.AddHttpContextAccessor();
 

@@ -5,8 +5,7 @@ namespace FootballBuddy.Profiles.Domain.Repositories;
 
 public interface IProfileRepository
 {
-    Task<bool> ExistsAsync(UserId userId);
-    Task AddAsync(Profile profile);
-    Task UpdateAsync(Profile profile);
+    Task<bool> ExistsAsync(UserId userId, CancellationToken cancellationToken = default);
+    Task AddAsync(Profile profile , CancellationToken cancellationToken = default);
     
 }

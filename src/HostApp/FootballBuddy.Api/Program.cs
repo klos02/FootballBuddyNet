@@ -3,6 +3,7 @@ using FootballBuddy.Auth.Api;
 using FootballBuddy.Auth.Application;
 using FootballBuddy.Auth.Infrastructure;
 using FootballBuddy.Auth.Infrastructure.Persistence;
+using FootballBuddy.Profiles.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
         
 builder.Services.AddAuthApplication();
 builder.Services.AddAuthInfrastructure(builder.Configuration);
+builder.Services.AddProfilesInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

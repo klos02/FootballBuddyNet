@@ -11,6 +11,7 @@
       <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Application\FootballBuddy.Auth.Application.csproj" />
       <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Domain\FootballBuddy.Auth.Domain.csproj" />
       <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Infrastructure\FootballBuddy.Auth.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\Profiles\FootballBuddy.Profiles.Infrastructure\FootballBuddy.Profiles.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

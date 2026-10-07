@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Auth\FootballBuddy.Auth.Contracts\FootballBuddy.Auth.Contracts.csproj" />
+      <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Application\BuildingBlocks.Application.csproj" />
+      <ProjectReference Include="..\FootballBuddy.Profiles.Domain\FootballBuddy.Profiles.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

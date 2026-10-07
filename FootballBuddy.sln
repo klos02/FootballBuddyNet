@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballBuddy.Profiles.Doma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballBuddy.Auth.Contracts", "src\Auth\FootballBuddy.Auth.Contracts\FootballBuddy.Auth.Contracts.csproj", "{C7271543-B006-428D-95BB-47F2C54DB763}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballBuddy.Profiles.Infrastructure", "src\Profiles\FootballBuddy.Profiles.Infrastructure\FootballBuddy.Profiles.Infrastructure.csproj", "{36DC5253-5BFA-45E3-A63C-EF7CD6DDDA55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{C7271543-B006-428D-95BB-47F2C54DB763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7271543-B006-428D-95BB-47F2C54DB763}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7271543-B006-428D-95BB-47F2C54DB763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36DC5253-5BFA-45E3-A63C-EF7CD6DDDA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36DC5253-5BFA-45E3-A63C-EF7CD6DDDA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36DC5253-5BFA-45E3-A63C-EF7CD6DDDA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36DC5253-5BFA-45E3-A63C-EF7CD6DDDA55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1300A94F-30E1-4B9D-915E-CB809C445FB4} = {CCAA2CC2-AE1A-4CF8-9677-875E70CD2FCA}
@@ -95,5 +101,6 @@ Global
 		{D7B81C6C-0C2C-4176-B994-55D0C80C32C7} = {CCAA2CC2-AE1A-4CF8-9677-875E70CD2FCA}
 		{F9EB402E-F3D2-49EB-9051-7A25DDBDE6AD} = {D7B81C6C-0C2C-4176-B994-55D0C80C32C7}
 		{C7271543-B006-428D-95BB-47F2C54DB763} = {1300A94F-30E1-4B9D-915E-CB809C445FB4}
+		{36DC5253-5BFA-45E3-A63C-EF7CD6DDDA55} = {D7B81C6C-0C2C-4176-B994-55D0C80C32C7}
 	EndGlobalSection
 EndGlobal

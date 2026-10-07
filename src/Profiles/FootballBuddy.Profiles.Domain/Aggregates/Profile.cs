@@ -1,6 +1,7 @@
 using BuildingBlocks.Domain.Abstractions;
 using BuildingBlocks.Domain.Exceptions;
 using FootballBuddy.Profiles.Domain.Enums;
+using FootballBuddy.Profiles.Domain.ValueObjects;
 using FootballBuddy.Shared.Domain.Users;
 
 namespace FootballBuddy.Profiles.Domain.Aggregates;
@@ -10,11 +11,11 @@ public sealed class Profile : AggregateRoot
     public UserId Id { get; private set; }
     public string? DisplayName { get; private set; }
     public Position? PreferredPosition { get; private set; }
-    public IReadOnlyCollection<Position> SecondaryPositions => _secondaryPositions.AsReadOnly();
+    public IReadOnlyCollection<PositionAssignment> SecondaryPositions => _secondaryPositions.AsReadOnly();
     
     
     
-    private readonly List<Position> _secondaryPositions = new();
+    private readonly List<PositionAssignment> _secondaryPositions = new();
     
     
     private Profile() {}
@@ -30,6 +31,25 @@ public sealed class Profile : AggregateRoot
         return id.Value == Guid.Empty ? throw new DomainException("User ID is required") : new Profile(id);
     }
     
+    public void AddSecondaryPosition(Position position)
+    {
+        var assignment = new PositionAssignment(position);
+
+        if (_secondaryPositions.Contains(assignment)) return;
+
+        _secondaryPositions.Add(assignment);
+        MarkAsUpdated();
+    }
+
+    public void RemoveSecondaryPosition(Position position)
+    {
+        var assignment = new PositionAssignment(position);
+
+        if (!_secondaryPositions.Remove(assignment)) return;
+
+        MarkAsUpdated();
+    }
+
     public void SetDisplayName(string displayName)
     {
         

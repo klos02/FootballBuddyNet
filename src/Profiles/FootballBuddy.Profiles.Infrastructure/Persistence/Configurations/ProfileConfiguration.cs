@@ -27,5 +27,32 @@ public class ProfileConfiguration : IEntityTypeConfiguration<Profile>
             .HasConversion<string>()
             .HasMaxLength(30)
             .IsRequired(false);
+
+        builder.OwnsMany(profile => profile.SecondaryPositions, assignment =>
+        {
+            assignment.ToTable("ProfileSecondaryPositions");
+
+            assignment.WithOwner().HasForeignKey("ProfileId");
+
+            assignment.Property<UserId>("ProfileId")
+                .ValueGeneratedNever()
+                .HasConversion(
+                    id => id.Value,
+                    value => new UserId(value));
+
+            assignment.Property(position => position.Position)
+                .HasConversion<string>()
+                .HasMaxLength(30)
+                .ValueGeneratedNever()
+                .IsRequired();
+
+            assignment.HasKey("ProfileId", "Position");
+        });
+
+        builder.Navigation(profile => profile.SecondaryPositions)
+            .HasField("_secondaryPositions")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
+
+        builder.Ignore(profile => profile.DomainEvents);
     }
 }

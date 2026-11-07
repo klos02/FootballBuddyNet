@@ -1,8 +1,11 @@
+using BuildingBlocks.Application.Abstractions;
+using BuildingBlocks.Infrastructure.IntegrationEvents;
 using FootballBuddy.Api.Middleware;
 using FootballBuddy.Auth.Api;
 using FootballBuddy.Auth.Application;
 using FootballBuddy.Auth.Infrastructure;
 using FootballBuddy.Auth.Infrastructure.Persistence;
+using FootballBuddy.Profiles.Application;
 using FootballBuddy.Profiles.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +37,9 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 builder.Services.AddAuthApplication();
 builder.Services.AddAuthInfrastructure(builder.Configuration);
 builder.Services.AddProfilesInfrastructure(builder.Configuration);
+builder.Services.AddProfilesApplication();
+
+builder.Services.AddScoped<IIntegrationEventDispatcher, IntegrationEventDispatcher>();
 
 var app = builder.Build();
 

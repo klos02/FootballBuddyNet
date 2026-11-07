@@ -1,4 +1,7 @@
+using FootballBuddy.Profiles.Application.Abstractions;
+using FootballBuddy.Profiles.Domain.Repositories;
 using FootballBuddy.Profiles.Infrastructure.Persistence;
+using FootballBuddy.Profiles.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +18,10 @@ public static class ProfilesInfrastructureExtensions
             options.UseNpgsql(
                 configuration.GetConnectionString("ProfilesDb"),
                 postgres => postgres.MigrationsHistoryTable("__EFMigrationsHistory_Profiles")));
+        
+        
+        services.AddScoped<IProfileRepository, ProfileRepository>();
+        services.AddScoped<IProfileUnitOfWork, ProfileUnitOfWork>();
 
         return services;
     }
